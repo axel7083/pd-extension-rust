@@ -1,0 +1,26 @@
+{
+  "name": "wasm",
+  "displayName": "WASM extension",
+  "description": "Demo of a WASM Podman Extension",
+  "version": "0.1.0-next",
+  "icon": "icon.png",
+  "publisher": "axel7083",
+  "type": "module",
+  "license": "Apache-2.0",
+  "engines": {
+    "podman-desktop": ">=1.10.0"
+  },
+  "scripts": {
+    "build": "wasm-pack build --target nodejs --out-name extension --no-pack && mv pkg/extension.js pkg/extension.cjs",
+    "watch": "cargo watch -i .gitignore -i \"pkg/*\" -s \"npm run build\""
+  },
+  "main": "./pkg/extension.cjs",
+  "contributes": {
+    "commands": [
+      {
+        "command": "wasm.hello",
+        "title": "[WASM] Hello !"
+      }
+    ]
+  }
+}
